@@ -1,0 +1,48 @@
+{
+  "name": "node-osc",
+  "description": "pyOSC inspired library",
+  "version": "1.1.0",
+  "main": "lib/index.js",
+  "author": {
+    "name": "Myles Borins",
+    "email": "myles.borins@gmail.com"
+  },
+  "scripts": {
+    "test": "npm run lint && npm run tape",
+    "tape": "tape test/*.js | tap-spec",
+    "watch": "nodemon --ignore node_modules/ -e js,json --exec 'npm test'",
+    "lint": "eslint **/*.js"
+  },
+  "contributors": [
+    {
+      "name": "Hans Hübner",
+      "email": "hans.huebner@gmail.com"
+    },
+    {
+      "name": "Andy Smith",
+      "email": "jabber@term.ie"
+    },
+    {
+      "name": "Myles Borins",
+      "email": "myles.borins@gmail.com"
+    }
+  ],
+  "dependencies": {
+    "jspack": "0.0.4",
+    "osc-min": "^0.2.0"
+  },
+  "keywords": [
+    "osc",
+    "udp"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/TheAlphaNerd/node-osc.git"
+  },
+  "devDependencies": {
+    "eslint": "^0.21.1",
+    "nodemon": "^1.2.1",
+    "tap-spec": "^3.0.0",
+    "tape": "^4.0.0"
+  }
+}
