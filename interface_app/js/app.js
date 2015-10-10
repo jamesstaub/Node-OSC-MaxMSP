@@ -1,7 +1,7 @@
 // jshint undef:false
 'use strict';
 
-	// var Firebase = require('firebase');
+var Firebase = require('firebase');
 var rubberApp = new Firebase('https://rubberhacks.firebaseio.com/');
 var params = {};
 
