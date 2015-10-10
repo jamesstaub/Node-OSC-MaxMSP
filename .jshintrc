@@ -1,0 +1,7 @@
+{
+  "eqnull": true,
+  "evil": false,
+  "predef": [ "$", console ]
+
+}
+
