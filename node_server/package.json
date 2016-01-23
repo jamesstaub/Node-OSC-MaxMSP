@@ -29,6 +29,7 @@
   ],
   "dependencies": {
     "express": "^4.13.3",
+    "firebase": "^2.4.0",
     "jspack": "0.0.4",
     "osc-min": "^0.2.0"
   },

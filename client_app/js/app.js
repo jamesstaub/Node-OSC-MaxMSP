@@ -15,7 +15,7 @@ $( document ).ready(function() {
 		});
 	});
 	$('input').on('mouseup', function(){
-		$(this).unbind();
+		// $(this).unbind();
 	});
 
 

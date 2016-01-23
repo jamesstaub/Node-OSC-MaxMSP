@@ -1,14 +1,13 @@
 'use strict';
 var osc = require('./lib');
-var client = new osc.Client('127.0.0.1', 3333);
+var oscClient = new osc.Client('127.0.0.1', 3333);
 var oscServer = new osc.Server(3334, '0.0.0.0');
 
 var OscIO = function() {};
 
 OscIO.prototype.send = function (address, message){
-  client.send(address, message, function (err) {
-    // client.kill();
-    console.log('sent');
+  oscClient.send(address, message, function (err) {
+    // oscClient.kill();
   })
 }
 
