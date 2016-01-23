@@ -1,31 +1,42 @@
 // jshint undef:false
 'use strict';
 
-	// var Firebase = require('firebase');
-var rubberApp = new Firebase('https://rubberhacks.firebaseio.com/');
-var params = {};
-
-
 $( document ).ready(function() {
-	$('input').on('mousedown', function(){
-		$(this).mousemove(function(){
-			var id = $(this).attr('id');
-			params[id] = $(this).val();
-			rubberApp.set(params);
-		});
+	var firebaseOSC = new Firebase('https://rubberhacks.firebaseio.com/');
+	var sliderVals = {};
+	var userData = {};
+	var uid;
+
+	firebaseOSC.authAnonymously(function(error, authData) {
+		uid = authData.uid;
+	}, {
+	  remember: "sessionOnly"
 	});
-	$('input').on('mouseup', function(){
-		// $(this).unbind();
+
+	$('input').change(function(){
+			var sliderID = $(this).attr('id');
+			sliderVals[sliderID] = $(this).val();
+			userData[uid] = sliderVals;
+			firebaseOSC.set(userData);
 	});
 
 
-
-	rubberApp.on('value', function(snapshot) {
+	firebaseOSC.on('value', function(snapshot) {
 		  $('p').html(snapshot.val());
 		  console.log(snapshot.val());
 		}, function (errorObject) {
 		  console.log('The read failed: ' + errorObject.code);
 	});
+
+
+	// $('select').change(function(){
+	// 		var selectBox = $(this).val();
+
+	// 		firebaseOSC.set({selection: selectBox});
+
+	// });
+
+
 
 });
 
