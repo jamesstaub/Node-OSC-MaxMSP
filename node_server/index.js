@@ -1,9 +1,16 @@
 var http = require('http');
+
 var httpPort = 8080;
 var oscIO = require('./oscIO');
 var Firebase = require("firebase");
 var firebaseOSC = new Firebase('https://rubberhacks.firebaseio.com/');
-var sliders;
+
+// send image
+var streamingS3 = require('streaming-s3'),
+    fs = require('fs');
+
+
+
 
 // http server
 function handleRequest(request, response){
@@ -18,10 +25,46 @@ server.listen(httpPort, function(){
 });
 
 firebaseOSC.on("value", function(snapshot) {
-  sliders = snapshot.val();
-  oscIO.send('a', Number(sliders.a));
-  oscIO.send('b', Number(sliders.b));
-  oscIO.send('c', Number(sliders.c));
-  oscIO.send('d', Number(sliders.d));
+  fbResponse = snapshot.val();
+  for (var uid in fbResponse) {
+    // var userIndex = uidToInt(uid);
+    var userData = fbResponse[uid];
+
+    for(var slider in userData){
+      // oscIO.send(userIndex[uid], Number(userData[slider]));
+
+      oscIO.send(String(uid), [slider, Number(userData[slider])]);
+    }
+  }
 });
 
+var userIndexes = {};
+
+function uidToInt(uid, userIndexeObj) {
+   //convert firbase user ids into a hash of numeric indexes
+  // userIndexes[uid] = true;
+  if (userIndexes.hasOwnProperty(uid)) {
+  }
+  for (var user in userIndexes) {
+    // userIndexes[user] = count;
+    // count ++;
+  }
+  return userIndexes;
+
+}
+
+
+var fStream = fs.CreateReadStream( './clips/capture.mov');
+console.log('fstream' fStream);
+
+var uploader = new streamingS3(fStream, {accessKeyId: 'accessKey', secretAccessKey: 'secretKey'},
+  {
+    Bucket: 'example.streaming-s3.com',
+    Key: 'video.mp4',
+    ContentType: 'video/mp4'
+  },  function (err, resp, stats) {
+  if (err) return console.log('Upload error: ', e);
+  console.log('Upload stats: ', stats);
+  console.log('Upload successful: ', resp);
+  }
+);

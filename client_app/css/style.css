@@ -1,12 +1,19 @@
-.container {
-  padding: 40px;
+body, .container {
+  padding: 20px 10px;
+  width: 100%;
+  overflow: hidden;
+}
+
+input {
+  display: block;
+  width: 400px;
 }
 
 
 input[type=range] {
   -webkit-appearance: none;
-  margin: 40px 0;
-  width: 100%;
+  margin-bottom: 100px ;
+  max-width: 100%;
 }
 input[type=range]:focus {
   outline: none;

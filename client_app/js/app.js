@@ -17,7 +17,7 @@ $( document ).ready(function() {
 			var sliderID = $(this).attr('id');
 			sliderVals[sliderID] = $(this).val();
 			userData[uid] = sliderVals;
-			firebaseOSC.set(userData);
+			firebaseOSC.update(userData);
 	});
 
 

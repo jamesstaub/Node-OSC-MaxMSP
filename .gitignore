@@ -1,1 +1,5 @@
 node_server/node_modules
+*.mov
+*.jpeg
+*.jpeg
+*.mp4
