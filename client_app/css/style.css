@@ -9,6 +9,12 @@ input {
   width: 400px;
 }
 
+#bang {
+  width: 300px;
+  height: 100px;
+  color: white;
+  background-color: black;
+}
 
 input[type=range] {
   -webkit-appearance: none;

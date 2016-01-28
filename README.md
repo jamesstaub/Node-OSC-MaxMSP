@@ -14,8 +14,9 @@ with performer or installation
 3. deploy to firebase
 
 
-##Data Processing
-Node js server that listens for firebase changes, and processes the data and sends it to Max/MSP on a local server
+##Node OSC server
+Node js server that interfaces between firebase app and media software using OSC messages.
+sends OSC over local host on port 3333 and receives OSC messages on port 3334.
 
 1. add amazon s3 bucket access key and secret key to your .bash_profile
 3. update firebase references in index.js

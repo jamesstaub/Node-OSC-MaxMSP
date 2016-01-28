@@ -11,11 +11,9 @@ OscIO.prototype.send = function (address, message){
   })
 }
 
-OscIO.prototype.receive = function (address, message){
-  oscServer.on('message', function (message) {
-    console.log('Message:');
-    console.log(msg);
-  });
+// not sure if address arg is necessary
+OscIO.prototype.receive = function (address, message, callback){
+  oscServer.on('message', callback);
 }
 
 

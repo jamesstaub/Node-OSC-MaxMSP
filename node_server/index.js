@@ -11,6 +11,11 @@ var oscIO = require('./oscIO');
 var streamingS3 = require('streaming-s3'),
     fs = require('fs');
 
+// amazon s3 bucket
+const accessKey = process.env.S3_ACCESS_KEY;
+const secret = process.env.S3_SECRET;
+
+
 // http server
 function handleRequest(request, response){
     response.end('It Works!! Path Hit: ' + request.url);
@@ -23,21 +28,33 @@ server.listen(httpPort, function(){
     console.log("Server listening on: http://localhost:%s", httpPort);
 });
 
+// receieve all firebase data, send to max over osc
 firebaseOSC.on("value", function(snapshot) {
   var fbResponse = snapshot.val();
+
   for (var uid in fbResponse) {
     // var userIndex = uidToInt(uid);
     var userData = fbResponse[uid];
-
-    for(var slider in userData){
-      // oscIO.send(userIndex[uid], Number(userData[slider]));
-      oscIO.send(String(uid), [slider, Number(userData[slider])]);
+    if (typeof userData === 'object') {
+      // var jsonUserData = unescape(JSON.stringify(userData));
+      // oscIO.send(String(uid), jsonUserData);
+      var userArray = [];
+      for(var slider in userData){
+        userArray.push(userData[slider]);
+      }
+      oscIO.send(String(uid), userArray);
     }
+
   }
+
+  setTimeout(function(){
+    oscIO.send('done', 1);
+  }, 2);
+
+
 });
 
 // var userIndexes = {};
-
 // function uidToInt(uid, userIndexeObj) {
 //    //convert firbase user ids into a hash of numeric indexes
 //   // userIndexes[uid] = true;
@@ -50,22 +67,30 @@ firebaseOSC.on("value", function(snapshot) {
 //   return userIndexes;
 // }
 
-// amazon s3 bucket
-var fStream = fs.createReadStream(  __dirname+'/../media/img.jpg');
 
-const accessKey = process.env.S3_ACCESS_KEY;
-const secret = process.env.S3_SECRET;
+// oscIO.receive('', 'message', function (message) {
+//   // console.log(message);
+//     if (message[0] === "filename") {
+//       var filename = message[1];
+//       var mediapath = '/../media/';
+//       var fStream = fs.createReadStream(  __dirname + mediapath + filename);
+//       console.log('mediafile',  __dirname + mediapath + filename);
+//       var uploader = new streamingS3(fStream, {
+//         accessKeyId: accessKey,
+//         secretAccessKey: secret },
+//         {
+//           Bucket: 'nodeoscjitter',
+//           Key: filename,
+//           ContentType: 'image/jpeg'
+//         },  function (err, resp, stats) {
+//         if (err) return console.log('Upload error: ', err);
+//         // console.log('Upload stats: ', stats);
+//         console.log('Upload successful: ', resp);
+//         console.log('location: ', resp.Location);
+//         firebaseOSC.update({media: resp.Location});
+//         }
+//       );
 
-var uploader = new streamingS3(fStream, {
-  accessKeyId: accessKey,
-  secretAccessKey: secret},
-  {
-    Bucket: 'nodeoscjitter',
-    Key: 'img.jpg',
-    ContentType: 'image/jpeg'
-  },  function (err, resp, stats) {
-  if (err) return console.log('Upload error: ', err);
-  console.log('Upload stats: ', stats);
-  console.log('Upload successful: ', resp);
-  }
-);
+//     }
+
+//   });
