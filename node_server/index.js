@@ -33,16 +33,18 @@ firebaseOSC.on("value", function(snapshot) {
   var fbResponse = snapshot.val();
 
   for (var uid in fbResponse) {
-    // var userIndex = uidToInt(uid);
+    uidToInt(uid);
+
     var userData = fbResponse[uid];
     if (typeof userData === 'object') {
-      // var jsonUserData = unescape(JSON.stringify(userData));
-      // oscIO.send(String(uid), jsonUserData);
       var userArray = [];
       for(var slider in userData){
+        oscIO.send('slider', `/${uidTable[uid]}/${slider} ${userData[slider]}`);
         userArray.push(userData[slider]);
       }
-      oscIO.send(String(uid), userArray);
+
+      oscIO.send(String(uidTable[uid]), userArray);
+
     }
 
   }
@@ -54,19 +56,16 @@ firebaseOSC.on("value", function(snapshot) {
 
 });
 
-// var userIndexes = {};
-// function uidToInt(uid, userIndexeObj) {
-//    //convert firbase user ids into a hash of numeric indexes
-//   // userIndexes[uid] = true;
-//   if (userIndexes.hasOwnProperty(uid)) {
-//   }
-//   for (var user in userIndexes) {
-//     // userIndexes[user] = count;
-//     // count ++;
-//   }
-//   return userIndexes;
-// }
-
+// convert firebase user id keys into zero-indexed integers
+var uidTable = {};
+function uidToInt(uid) {
+  uidTable[uid] = true;
+  var count = 0;
+  for (var id in uidTable) {
+    uidTable[id] = count;
+    count++;
+  }
+}
 
 // oscIO.receive('', 'message', function (message) {
 //   // console.log(message);
