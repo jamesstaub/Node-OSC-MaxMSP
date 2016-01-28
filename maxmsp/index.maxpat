@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 34.0, 79.0, 1196.0, 899.0 ],
+		"rect" : [ 308.0, 79.0, 922.0, 899.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -38,12 +38,75 @@
 		"subpatcher_template" : "",
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-102",
+					"linecount" : 2,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 123.0, 460.0, 150.0, 33.0 ],
+					"presentation_rect" : [ 123.0, 459.0, 0.0, 0.0 ],
+					"style" : "",
+					"text" : "explicitly route by users id and slider id"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-101",
+					"linecount" : 2,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 476.0, 305.0, 150.0, 33.0 ],
+					"style" : "",
+					"text" : "Collect each user's data as an item in a collection"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-97",
+					"maxclass" : "meter~",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "float" ],
+					"patching_rect" : [ 449.0, 582.0, 80.0, 13.0 ],
+					"style" : ""
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-96",
+					"maxclass" : "ezdac~",
+					"numinlets" : 2,
+					"numoutlets" : 0,
+					"patching_rect" : [ 604.0, 595.0, 45.0, 45.0 ],
+					"style" : ""
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-95",
+					"maxclass" : "gain~",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "signal", "int" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 535.0, 587.0, 22.0, 140.0 ],
+					"style" : ""
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-90",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "dump" ],
-					"patching_rect" : [ 307.0, 234.0, 47.0, 22.0 ],
+					"patching_rect" : [ 438.0, 359.5, 47.0, 22.0 ],
 					"style" : "",
 					"text" : "t dump"
 				}
@@ -57,7 +120,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 51.0, 575.0, 250.0, 143.0 ],
+					"patching_rect" : [ 51.0, 662.0, 250.0, 143.0 ],
 					"size" : 4,
 					"style" : ""
 				}
@@ -70,7 +133,7 @@
 					"numinlets" : 6,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 46.0, 530.0, 105.0, 22.0 ],
+					"patching_rect" : [ 46.0, 617.0, 105.0, 22.0 ],
 					"style" : "",
 					"text" : "scale 0 1000 0. 1."
 				}
@@ -83,7 +146,7 @@
 					"numinlets" : 4,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 46.0, 492.0, 60.0, 22.0 ],
+					"patching_rect" : [ 46.0, 579.0, 60.0, 22.0 ],
 					"style" : "",
 					"text" : "pack i i i i"
 				}
@@ -96,7 +159,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 116.0, 197.5, 73.0, 22.0 ],
+					"patching_rect" : [ 41.0, 479.0, 73.0, 22.0 ],
 					"style" : "",
 					"text" : "fromsymbol"
 				}
@@ -109,7 +172,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 5,
 					"outlettype" : [ "", "", "", "", "" ],
-					"patching_rect" : [ 116.0, 227.5, 161.0, 22.0 ],
+					"patching_rect" : [ 41.0, 521.5, 161.0, 22.0 ],
 					"style" : "",
 					"text" : "OSC-route /0/a /0/b /0/c /0/d"
 				}
@@ -122,7 +185,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 360.0, 216.5, 85.0, 22.0 ],
+					"patching_rect" : [ 492.0, 359.5, 85.0, 22.0 ],
 					"style" : "",
 					"text" : "prepend store"
 				}
@@ -135,7 +198,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 4,
 					"outlettype" : [ "", "", "", "" ],
-					"patching_rect" : [ 360.0, 270.5, 81.0, 22.0 ],
+					"patching_rect" : [ 492.0, 395.5, 81.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"embed" : 0
 					}
@@ -231,7 +294,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 427.0, 415.0, 84.0, 23.0 ],
+					"patching_rect" : [ 527.0, 460.0, 84.0, 23.0 ],
 					"style" : "",
 					"text" : "pak target 0"
 				}
@@ -242,8 +305,9 @@
 					"id" : "obj-44",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 384.0, 477.0, 170.0, 22.0 ],
+					"numoutlets" : 1,
+					"outlettype" : [ "signal" ],
+					"patching_rect" : [ 484.0, 517.0, 170.0, 22.0 ],
 					"style" : "",
 					"text" : "poly~ _user_instance_poly 24"
 				}
@@ -269,6 +333,24 @@
 					"disabled" : 0,
 					"hidden" : 0,
 					"source" : [ "obj-1", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-95", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-44", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-97", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-44", 0 ]
 				}
 
 			}
@@ -443,6 +525,24 @@
 				}
 
 			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-96", 1 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-95", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-96", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-95", 0 ]
+				}
+
+			}
  ],
 		"dependency_cache" : [ 			{
 				"name" : "_user_instance_poly.maxpat",
@@ -450,6 +550,10 @@
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
+			}
+, 			{
+				"name" : "sinusoids~.mxo",
+				"type" : "iLaX"
 			}
 , 			{
 				"name" : "OSC-route.mxo",

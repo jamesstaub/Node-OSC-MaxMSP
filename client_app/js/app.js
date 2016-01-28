@@ -14,10 +14,10 @@ $( document ).ready(function() {
 	  remember: "sessionOnly"
 	});
 
-	window.setInterval(time, 3000);
+	// window.setInterval(time, 3000);
 	function time() {
 		var rand = Math.floor(Math.random() * 1000);
-		$('input').val(rand).trigger('change');
+		// $('input').val(rand).trigger('change');
 	}
 
 
